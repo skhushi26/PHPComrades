@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+  body {
+    /* background-image: linear-gradient(43deg, #d547f1 0%, #1b7983 100%); */
+    background: url(../images/bg3.jpg) no-repeat;
+    margin:0px;
+    font-family: 'Ubuntu', sans-serif;
+    background-size: 100% 110%;
+    height: 100%;
+}
+  .topnav {
+    margin-right: 5%;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  
+  .topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .topnav-left{
+    float: left !important;
+    margin-left:20px !important;
+  }
+  a:hover {
+    /* text-decoration: none !important; */
+    color: white !important;
+  }
+  
+  .topnav a.active {
+    color: white !important;
+  }
+  .logo-header{
+    margin-left:20px !important;
+    left: 0px !important;
+  }
+  .topnav a:hover {
+    text-decoration: underline !important;
+  }
+  
+  .topnav a.active {
+    color: white !important;
+  }
+nav{
+  box-shadow: 0px 0px 10px rgb(0 0 0);  
+  padding:5px;
+  background-color: #024e4a;;
+}
+.dashboard-title{
+    font-weight: 900;
+    font-size: 64px;
+    color:white;
+    text-align: center;
+    margin-top: 7%;
+    margin-bottom: 0;
+}
+.part1{
+  margin-top: 7%;
+  height: 130px;
+}
+.part2{
+    background-color: white;
+    padding-top: 3%;
+    margin-top: 7%;
+    height: 258px;
+}
+.dashboard-text1{
+    font-size: 24px;
+    color:white;
+    text-align: center;
+    font-family: system-ui;
+    font-weight: lighter;
+}
+.dashboard-text1-red{
+   font-size: 28px;
+   text-align: center;
+   font-family: system-ui;
+   font-weight: lighter;
+   color: #F44336; 
+   font-weight: 600;
+   margin-top:40px;
+}
+.dashboard-text2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: black;
+  margin-left: 33%;
+  margin-top: 0;
+  font-family: system-ui;
+}
+.dashboard-text3 {
+  font-size: 22px;
+  color: black;
+  margin-left: 33%;
+  margin-top: 0;
+  font-family: system-ui;
+  font-weight: lighter;
+}
+.dashboard-text4-black {
+  font-size: 16px;
+  color: black;
+  margin-top: 0;
+  font-family: system-ui;
+  font-weight: lighter;
+  font-style: italic;
+}
+.dashboard-text4-gray {
+  font-size: 16px;
+  color: gray;
+  margin-left: 33%;
+  margin-top: 0;
+  font-family: system-ui;
+  font-weight: lighter;
+  font-style: italic;
+}
+#logo{
+  width:130px;
+  height:130px;
+}
+nav .logo-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto 10px auto;
+}
+
+.date-dob {
+  border: 1px solid #ced4da !important;
+}
+
+input#dob {
+  display: inline-block;
+  position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+.alert-success, .alert-danger {
+  margin-top: 40px !important;
+  margin-left: 40px !important;
+  margin-right: 40px !important;
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+}
+
+[class^="error"]{
+  color: rgb(233, 10, 10);
+}
+#copyright-white{
+  margin-left: 40%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  color:white
+}
+#copyright-black{
+  margin-left: 40%;
+  bottom: 10px;
+  transform: translate(-50%, -50%);
+  color:black;
+}
