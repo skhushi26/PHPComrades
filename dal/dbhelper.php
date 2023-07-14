@@ -117,6 +117,11 @@
                $callback($row, $userDefinedData);
             }
        }
+
+       function getResult() {
+        // Retrieve and return the query result
+        return $this->stmt->fetchAll();
+      }
     }
 ?>
 

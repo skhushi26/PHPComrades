@@ -1,3 +1,44 @@
+<?php
+require_once "dal/user.php";
+// $errors = [];
+$errors = [
+  "name" => "",
+  "email" => "",
+  "phone" => "",
+  "province" => "",
+  "password" => "",
+];
+
+setcookie("isRegisterSuccessful", "", time() - 3600, "/");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  // Validate the form inputs and collect any errors
+  // Assuming you have already included and instantiated the User class
+  $user = new User();
+  $user->setName($_POST["name"]);
+  $user->setEmail($_POST["email"]);
+  $user->setPassword($_POST["password"]);
+  $user->setPhone($_POST["phone"]);
+  $user->setProvince($_POST["province"]);
+
+  // Check for errors
+  $errors = $user->getErrors();
+
+  if (empty($errors)) {
+    $rowCount = $user->insert();
+    if ($rowCount > 0) {
+      setcookie("isRegisterSuccessful", true, time() + 24 * 60 * 60, "/");
+      header("Location: login.php");
+      exit();
+    } else {
+      // Insertion failed
+      setcookie("isRegisterSuccessful", false, time() + 24 * 60 * 60, "/");
+    }
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,24 +64,41 @@
                           <h3 class="pt-3 font-weight-bold">SIGN UP</h3>
                       </div>
                       <div class="panel-body p-3">
-                      <form action="/signup" method="post" id="signup_form">
+                      <form method="post" id="signup_form">
              
+                      <?php 
+                      $isRegisterSuccessful = isset($_COOKIE["isRegisterSuccessful"]) ? $_COOKIE["isRegisterSuccessful"] : true;
+                      echo !$isRegisterSuccessful ? "<div class='alert alert-danger' role='alert'>An error occurred while registering. Please try again.</div>" : ""; 
+                      ?>
+
                 <!-- NAME -->
                 <div class="form-group py-1">
                   <div class="input-field"><input type="text" id="name" name="name" placeholder="Name"> </div>
-                  <span class="error-name"></span>
+                  <?php echo $errors["name"] != null
+                    ? "<span class='text-danger'>*" .
+                      $errors["name"] .
+                      "</span>"
+                    : ""; ?>
                 </div>
            
                 <!-- EMAIL -->
                 <div class="form-group py-1">
                   <div class="input-field"><input type="text" id="email" name="email" placeholder="Email"> </div>
-                  <span class="error-email"></span>
+                  <?php echo $errors["email"] != null
+                    ? "<span class='text-danger'>*" .
+                      $errors["email"] .
+                      "</span>"
+                    : ""; ?>
                 </div>
            
                 <!-- PHONE -->
                 <div class="form-group py-1">
                   <div class="input-field"><input type="text" id="phone" name="phone" placeholder="Phone"> </div>
-                  <span class="error-phone"></span>
+                  <?php echo $errors["phone"] != null
+                    ? "<span class='text-danger'>*" .
+                      $errors["phone"] .
+                      "</span>"
+                    : ""; ?>
                 </div>
            
 
@@ -49,7 +107,11 @@
                   <div class="input-field">
                     <input type="password" id="password" name="password" placeholder="Password">
                   </div>
-                  <span class="error-password"></span>
+                  <?php echo $errors["password"] != null
+                    ? "<span class='text-danger'>*" .
+                      $errors["password"] .
+                      "</span>"
+                    : ""; ?>
               </div>
 
 
@@ -57,15 +119,16 @@
                 <div class="form-group py-1 pb-2">
                 <select class="form-control" id='province' name='province' >
                 <?php
-                    $provinces=["ON","AB","BC","MB"];
-                    echo "<option value='-1'>Select a province..</option>";
-                    foreach($provinces as $province)
-                    {
-                        echo "<option value='$province'>$province</option>";
-                    }
+                $provinces = ["ON", "AB", "BC", "MB"];
+                echo "<option value='-1'>Select a province..</option>";
+                foreach ($provinces as $province) {
+                  echo "<option value='$province'>$province</option>";
+                }
                 ?>
             </select>
-              <span class="error-usertype"></span>
+            <?php echo $errors["province"] != null
+              ? "<span class='text-danger'>*" . $errors["province"] . "</span>"
+              : ""; ?>
             </div>
 
 

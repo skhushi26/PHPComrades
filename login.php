@@ -1,3 +1,37 @@
+<?php 
+    require_once("dal/user.php");
+    // redirectIfLoggedIn();
+    $errors = [];
+    if($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+        $user = new User();
+        $user->setEmail($_POST["email"]);
+        $user->setPassword($_POST["password"]);
+      
+        // Check for errors
+        $errors = $user->getErrors();
+
+        if(count($errors)==0)
+        {
+            echo "Beginning of Login part <br>";
+            $email=$user->getEmail();
+            $password=$user->getPassword();
+            if($user->login($email, $password))
+            {
+                echo "Login successfully";
+            //    redirectIfLoggedIn(); 
+            echo "logged in";
+               exit();
+            }
+            else{
+                echo "Login not successfully";
+               $errors["login"]="<h3 style='color:red'>Login Failed!</h3>"; 
+            }
+        }
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +46,7 @@
 </head>
 <body>
 
-        <?php 
-        require_once('navigation.php');
-        ?>
+        <?php require_once "navigation.php"; ?>
         
         <div class="container">
           <div class="row">
@@ -24,7 +56,11 @@
                           <h3 class="pt-3 font-weight-bold">LOGIN</h3>
                       </div>
                       <div class="panel-body p-3">
-                          <form action="/login" method="post" id="login_form">
+                          <form method="post" id="login_form">                          
+                              <?php 
+                                  $isRegisterSuccessful = isset($_COOKIE["isRegisterSuccessful"]) ? $_COOKIE["isRegisterSuccessful"] : true;
+                                  echo !$isRegisterSuccessful ? "<div class='alert alert-success' role='alert'>User created successfully, please login!</div>" : ""; 
+                              ?>
 
                               <div class="form-group py-2">
                                   <div class="input-field"><input type="text" id="email" name="email" placeholder="Email"> </div>
