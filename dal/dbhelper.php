@@ -3,8 +3,8 @@
     
     class DBHelper {
         const DB_USER = 'root';
-        const DB_PASSWORD =  '123456';
-        const DB_HOST =  'localhost:3307';
+        const DB_PASSWORD =  '';
+        const DB_HOST =  'localhost:3306';
         const DB_NAME = 'homedecor';
         const CHARSET = 'utf8mb4';
         
@@ -36,6 +36,63 @@
                                   `province` varchar(2) NOT NULL,
                                   PRIMARY KEY (`user_id`)
                                 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;");
+
+                $pdo-> query("CREATE TABLE brand (
+                    BrandId MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+                    BrandName VARCHAR(255) NOT NULL,
+                    PRIMARY KEY(BrandId)
+                ) Engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4"
+                );
+
+                $pdo-> query("CREATE TABLE category (
+                    CategoryId MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+                    CategoryName VARCHAR(255) NOT NULL,
+                    PRIMARY KEY(CategoryId)
+                ) Engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4"
+                );
+
+                $pdo-> query("CREATE TABLE products (
+                    ProductId MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+                    ProductName VARCHAR(255) NOT NULL,
+                    ProductDescription LONGTEXT NOT NULL,
+                    QuantityAvailable MEDIUMINT(8) UNSIGNED NOT NULL,
+                    Price DECIMAL(18,2) NOT NULL,
+                    PRIMARY KEY(ProductId),
+                    FK_BrandId MEDIUMINT(8) UNSIGNED NOT NULL,
+                    FOREIGN KEY(FK_BrandId) REFERENCES brand(BrandId) ON UPDATE CASCADE ON DELETE RESTRICT,
+                    FK_CategoryId MEDIUMINT(8) UNSIGNED NOT NULL,
+                    FOREIGN KEY(FK_CategoryId) REFERENCES category(CategoryId) ON UPDATE CASCADE ON DELETE RESTRICT
+
+                ) Engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4"
+            );
+
+            # Default value for brand
+            $queryBrand = "INSERT INTO brand(BrandName)
+                            VALUES('Uppland'),
+                                  ('Songesand');
+         ";
+         $resultBrand = $pdo-> query($queryBrand);
+
+         if ($resultBrand === false) {
+             die("Error inserting brand data: " . $pdo -> error);
+         }
+
+        # Default value for category
+                         $queryCategory = "INSERT INTO category(CategoryName)
+                         VALUES('3 Seater Fabric Sofa'),
+                               ('Beds with storage Boxes');
+      ";
+      $resultCategory = $pdo-> query($queryCategory);
+
+      $queryProduct = "INSERT INTO products (ProductName, ProductDescription, QuantityAvailable, Price, FK_BrandId, FK_CategoryId)
+      VALUES ('Sofa', 'Sofa, Hallarp gray', 7, 949, 1, 1),
+             ('Beds', 'Bed frame with 2 storage boxes, white/Luröy, Full/Double', 12, 399, 2, 2)";
+
+   $resultProduct = $pdo-> query($queryProduct);
+
+   if ($resultCategory === false) {
+       die("Error inserting category data: " . $pdo -> error);
+   }
                 
             }
             catch(PDOException $e)
@@ -87,18 +144,19 @@
        
        function execute($sqlStatement = "")
        {
-        if(!empty($sqlStatement))   
-            $this->statement($sqlStatement);
-        if(is_array($this->params))
-        {
-             $this->stmt=self::$connection->prepare($this->sqlStatement);
-             $this->stmt->execute($this->params);
-        }
-        else
-            $this->stmt=self::$connection->query($this->sqlStatement);
-        
-        return $this;
+           if (!empty($sqlStatement)) {
+               $this->statement($sqlStatement);
+           }
+           if (is_array($this->params)) {
+               $this->stmt = self::$connection->prepare($this->sqlStatement);
+               $this->stmt->execute($this->params);
+           } else {
+               $this->stmt = self::$connection->query($this->sqlStatement);
+           }
+       
+           return $this;
        }
+       
        
        function forEach(callable $callback, $userDefinedData=null)
        {
@@ -117,6 +175,17 @@
                $callback($row, $userDefinedData);
             }
        }
+
+       function forAll(callable $callback, &$userDefinedData = null)
+       {
+           $index = 0;
+           while ($row = $this->stmt->fetch()) {
+               $callback($row, $userDefinedData);
+               $index++;
+           }
+       }
+       
+       
 
        function getResult() {
         // Retrieve and return the query result
