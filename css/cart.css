@@ -1,0 +1,293 @@
+body{
+  background-image: none;
+  background-color: white;
+}
+
+.summary {
+    padding: 2.5rem 3rem 3rem;
+    border: 0.1rem dashed #d7d7d7;
+    background-color: #f9f9f9;
+    border-radius: 0.3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .summary-title {
+    font-weight: bolder;
+    font-size: 2rem;
+    letter-spacing: 0;
+    padding-bottom: 1.7rem;
+    border-bottom: 0.1rem solid #cccccc;
+    margin-bottom: 2.1rem;
+  }
+  .table.table-summary {
+    line-height: 1.43;
+    color: #666;
+    border: none;
+    margin-bottom: 0;
+  }
+  .table.table-summary a {
+    color: inherit;
+  }
+  .table.table-summary a:hover,
+  .table.table-summary a:focus {
+    color: #c96;
+  }
+  .table.table-summary thead th,
+  .table.table-summary .summary-subtotal td {
+    color: #333;
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
+  .table.table-summary thead th {
+    border-bottom: none;
+    padding: 0 0 0.3rem;
+  }
+  .table.table-summary tbody td {
+    padding: 0;
+    height: 70px;
+    border-bottom: 0.1rem solid #ebebeb;
+  }
+  .table.table-summary thead th,
+  .table.table-summary tbody td {
+    vertical-align: middle;
+    border-top: none;
+  }
+  .table.table-summary thead th:last-child,
+  .table.table-summary tbody td:last-child {
+    text-align: right;
+    min-width: 100px;
+  }
+  .table.table-summary .summary-total td {
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: #c96;
+    border-bottom: none;
+  }
+  .accordion-summary {
+    margin-bottom: 3.2rem;
+  }
+  .accordion-summary .card {
+    color: #999;
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.67;
+    border: none;
+    background-color: transparent;
+  }
+  .accordion-summary .card-title {
+    font-weight: 300;
+    font-size: 1.4rem;
+    color: #333;
+    letter-spacing: 0;
+  }
+  .accordion-summary .card-title a {
+    color: inherit;
+    padding: 0.7rem 0 0.7rem 3rem;
+  }
+  .accordion-summary .card-title a img {
+    margin-top: 1rem;
+  }
+  .accordion-summary .card-title a:hover,
+  .accordion-summary .card-title a:focus {
+    color: inherit;
+  }
+  .accordion-summary .card-title a small {
+    font-size: 1.1rem;
+    color: #999;
+  }
+  .accordion-summary .card-title a:before {
+    content: "";
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    border: 0.1rem solid #c96;
+    right: auto;
+    left: 0;
+    top: 0.7rem;
+    transform: translateY(0);
+    -ms-transform: translateY(0);
+  }
+  .accordion-summary .card-title a:after {
+    content: "";
+    display: block;
+    width: 0.6rem;
+    height: 0.6rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 1.2rem;
+    border-radius: 50%;
+    background-color: #c96;
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s;
+  }
+  .accordion-summary .card-title a.collapsed:before {
+    border-color: #dadada;
+  }
+  .accordion-summary .card-title a.collapsed:after {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .accordion-summary .card-body {
+    padding: 0.4rem 0 0.8rem 3rem;
+  }
+  .paypal-link {
+    cursor: pointer;
+    margin-top: 0.2rem;
+  }
+  .paypal-link:hover,
+  .paypal-link:focus {
+    color: #c96 !important;
+  }
+
+  .table .total-col {
+    color: #c96;
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
+  .table.table-cart .price-col {
+    width: 120px;
+  }
+  .table.table-cart .total-col {
+    width: 80px;
+  }
+  .table.table-cart .quantity-col {
+    width: 135px;
+  }
+  .cart-product-quantity {
+    width: 100px;
+  }
+  .cart-product-quantity .form-control {
+    padding: 0.85rem 2.6rem;
+    height: 40px;
+    max-width: 100%;
+    border-color: #dadada;
+    background-color: #fff;
+    margin: 0;
+  }
+  .table .remove-col {
+    padding-right: 0;
+    padding-left: 0;
+    width: 38px;
+    text-align: right;
+  }
+  .table .remove-col .btn-remove {
+    margin-right: -0.7rem;
+  }
+  .product-col .product {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding-right: 2rem;
+    box-shadow: none;
+  }
+  .product-col .product-media {
+    display: inline-block;
+    margin: 0;
+    margin-right: 2.8rem;
+    flex-shrink: 0;
+    max-width: 60px;
+  }
+  .product-col .product-title {
+    display: inline-block;
+    color: #333;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.25;
+    margin: 0;
+  }
+  .product-col .product-title a {
+    color: inherit;
+  }
+  .product-col .product-title a:hover,
+  .product-col .product-title a:focus {
+    color: #c96;
+  }
+  .in-stock {
+    color: #a6c76c;
+  }
+  .out-of-stock {
+    color: #ef837b;
+  }
+  .btn-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    color: #cccccc;
+    background-color: transparent;
+    font-size: 1.7rem;
+    line-height: 1;
+    border: none;
+    outline: none;
+    transition: all 0.35s;
+  }
+  .btn-remove:hover,
+  .btn-remove:focus {
+    color: #333;
+  }
+  .action-col .dropdown-menu {
+    color: #666;
+    border-radius: 0;
+    width: 100%;
+    font-size: 1.3rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .action-col .dropdown-item {
+    padding: 0.5rem 1.5rem;
+    transition: background 0.35s ease, color 0.1s ease;
+  }
+  .action-col .dropdown-item.active,
+  .action-col .dropdown-item:active,
+  .action-col .dropdown-item:hover,
+  .action-col .dropdown-item:focus {
+    color: #fff;
+    background-color: #c96;
+  }
+
+.btn-order{
+  background-color: #037614;
+  padding: 1.5rem;
+}
+
+.btn-save-for-later {
+  background-color: transparent;
+  color: #000; 
+  padding: 1rem;
+  border: solid 1px rgb(225, 223, 223);
+  margin-top: 25px;
+}
+
+.btn-save-for-later i.fa-heart {
+  color: rgb(198, 5, 5);
+}
+
+.btn-save-for-later-clicked {
+  background-color: #FFEBEE;
+  color: #000; 
+  padding: 1rem;
+  border: solid 1px rgb(225, 223, 223);
+}
+
+.ddlQuantity{
+  border: none;
+  /* border-bottom: 1px solid #b5b5b5; */
+  border-radius: 0px;
+  box-shadow: none;
+  width:15%;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+}
+
+.qty-label {
+  margin-right: 10px;
+}
+
+img{
+  margin: 10px;
+}

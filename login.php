@@ -18,15 +18,19 @@
             $password=$user->getPassword();
             if($user->login($email, $password))
             {
-                echo "Login successfully";
+                echo "Login successfully<br>";
             //    redirectIfLoggedIn(); 
             echo "logged in";
                exit();
             }
             else{
                 echo "Login not successfully";
-               $errors["login"]="<h3 style='color:red'>Login Failed!</h3>"; 
+               $errors["login"]="<h3 style='color:red'>Login Failed!</h3><br>"; 
             }
+        }
+        else 
+        {
+            echo var_dump($errors);
         }
     }
     

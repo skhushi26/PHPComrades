@@ -116,6 +116,9 @@ class User
     if (isset($properties["name"])) {
       $this->setName($properties["name"]);
     }
+    if (isset($properties["password"])) {
+      $this->setPassword($properties["password"]);
+    }
     if (isset($properties["email"])) {
       $this->setEmail($properties["email"]);
     }
@@ -138,6 +141,7 @@ class User
         ->forOne(function ($row, $userDefinedData) {
           $userDefinedData->setUserId($row["user_id"]);
           $userDefinedData->setName($row["name"]);
+          $userDefinedData->setPassword($row["password"]);
           $userDefinedData->setEmail($row["email"]);
           $userDefinedData->setPhone($row["phone"]);
           $userDefinedData->setProvince($row["province"]);
@@ -148,7 +152,9 @@ class User
   function insert()
   {
     $sql = new DBHelper();
+    echo "Insert password: " .$this->password;
     $passwordhash = password_hash($this->password, PASSWORD_DEFAULT);
+    echo "Insert passwordHash: " .$passwordhash;
     $sql
       ->statement(
         "INSERT INTO users (name, email, password, phone, province) VALUES (:name, :email, :password, :phone, :province)"
@@ -201,6 +207,7 @@ class User
   # LOGIN #
   function login($email, $password)
   {
+    echo "Login function 1";
     $sql = new DBHelper();
     $sql
       ->statement("SELECT * FROM users WHERE email=:email")
@@ -209,34 +216,28 @@ class User
       ])
       ->execute();
 
+      echo "Login function 2<br>";
     $result = $sql->getResult();
 
     if (count($result) == 1) {
+      echo "Login function 3 <br>";
+      echo "Passowrd from form: ". $password . "<br>";
       $row = $result[0]; // Access the first row of the result array
 
       $passwordHash = $row["password"];
-
-      $passwordhash1 = password_hash($password, PASSWORD_DEFAULT);
-      echo "Password hash 1 : " . $passwordhash1;
-      echo "Password hash 2 : " . $passwordHash;
-      if ($passwordhash1 == $passwordHash) {
-        session_regenerate_id();
-        $_SESSION["user_id"] = $row["user_id"];
-        return true;
-      } else {
-        echo "Passwords not matching";
-      }
+      echo "Password Hash". $passwordHash . "<br>";
+      ECHO "pASSWORD: " . $password;
+          if (password_verify($password, $passwordHash)) {
+            session_regenerate_id();
+            $_SESSION["user_id"] = $row["user_id"];
+            return true;
+        }
+        else
+        {
+          echo "Passwords not matching<br>";
+        }
     }
-    //     if (password_verify($password, $passwordHash)) {
-    //         session_regenerate_id();
-    //         $_SESSION["user_id"] = $row["user_id"];
-    //         return true;
-    //     }
-    //     else
-    //     {
-    //       echo "Passwords not matching";
-    //     }
-    // }
+
     return false;
   }
 

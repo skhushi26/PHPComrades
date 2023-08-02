@@ -183,3 +183,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transform: translate(-50%, -50%);
   color:black;
 }
+
+.logo-icon {
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  margin-left: 8px;
+  margin-right: 2px;
+}
+.logo {
+  font-size: calc(2rem + 0.5vw);
+  line-height: calc(1rem + 1vw);
+  font-weight: 600;
+  text-decoration: none;
+  color: #0e2431;
+  margin-top: 30px;
+}

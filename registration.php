@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./css/site.css">
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/registration.css">
-    <link rel="shortcut icon" href="/images/drive-test.ico">
+    <link rel="shortcut icon" href="/images/home_decor_logo.jpeg">
     <title>Registration</title>
 </head>
 <body>

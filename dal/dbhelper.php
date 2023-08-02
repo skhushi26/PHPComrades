@@ -30,7 +30,7 @@
                 $pdo->query("CREATE TABLE `users` (
                                   `user_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
                                   `email` varchar(255) NOT NULL,
-                                  `password` varchar(50) NOT NULL,
+                                  `password` varchar(255) NOT NULL,
                                   `name` varchar(100) NOT NULL,
                                   `phone` varchar(20) NOT NULL,
                                   `province` varchar(2) NOT NULL,
