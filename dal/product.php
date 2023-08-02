@@ -4,6 +4,7 @@ require_once "dbhelper.php";
 class Product {
     protected $productId;
     protected $ProductName;
+    protected $ProductImage;
     protected $ProductDescription;
     protected $QuantityAvailable;
     protected $Price;
@@ -28,6 +29,15 @@ class Product {
     function setProductName($ProductName)
     {
       $this->ProductName = trim(htmlSpecialChars($ProductName));
+    }
+
+    function getProductImage()
+    {
+      return $this->ProductImage;
+    }
+    function setProductImage($ProductImage)
+    {
+      $this->ProductImage = trim(htmlSpecialChars($ProductImage));
     }
 
     function getProductDescription()
@@ -81,18 +91,18 @@ class Product {
     {
         $sql = new DBHelper();
         $sql
-            ->statement("SELECT p.ProductName, p.ProductDescription, p.QuantityAvailable, p.Price, b.BrandName, c.CategoryName
+            ->statement("SELECT p.ProductName, p.ProductImage, p.ProductDescription, p.QuantityAvailable, p.Price,  c.CategoryName
                          FROM products p
-                         JOIN brand b ON p.FK_BrandId = b.BrandId
                          JOIN category c ON p.FK_CategoryId = c.CategoryId")
             ->execute()
             ->forAll(function ($row, &$products) {
                 $product = new Product();
                 $product->setProductName($row["ProductName"]);
+                $product->setProductImage($row["ProductImage"]);
                 $product->setProductDescription($row["ProductDescription"]);
                 $product->setQuantityAvailable($row["QuantityAvailable"]);
                 $product->setPrice($row["Price"]);
-                $product->setBrandName($row["BrandName"]);
+                // $product->setBrandName($row["BrandName"]);
                 $product->setCategoryName($row["CategoryName"]);
                 $products[] = $product;
             }, $products);
