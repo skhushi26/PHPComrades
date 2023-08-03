@@ -230,6 +230,7 @@ class User
           if (password_verify($password, $passwordHash)) {
             session_regenerate_id();
             $_SESSION["user_id"] = $row["user_id"];
+            echo "User Id" . $_SESSION["user_id"];
             return true;
         }
         else

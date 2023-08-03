@@ -1,4 +1,5 @@
 <?php 
+// Start the session
     require_once("dal/user.php");
     // redirectIfLoggedIn();
     $errors = [];
@@ -13,12 +14,12 @@
 
         if(count($errors)==0)
         {
-            echo "Beginning of Login part <br>";
             $email=$user->getEmail();
             $password=$user->getPassword();
             if($user->login($email, $password))
             {
-                echo "Login successfully<br>";
+                echo "Login Successfully!";
+          
             //    redirectIfLoggedIn(); 
             echo "logged in";
                exit();
