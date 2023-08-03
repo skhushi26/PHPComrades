@@ -119,7 +119,7 @@ if (isset($_POST["save"])) {
       <div class="col-lg-12" style="margin-top:20px;">
           <!-- <h1 class="page-header text-center">Cart Details</h1> -->
           <div class="row">
-              <div class="col-sm-8 col-sm-offset-2">
+              <div class="col-sm-10 col-sm-offset-1">
                   <?php if (isset($_SESSION["message"])) { ?>
                       <div class="alert alert-info text-center">
                           <?php echo $_SESSION["message"]; ?>
@@ -131,7 +131,7 @@ if (isset($_POST["save"])) {
     
        
 
-                  <div class="col-lg-9 summary" style="background-color: white;">
+                  <div class="col-lg-8 summary" style="background-color: white;">
                   <h2><b>MY BAG</b></h2>
                   <table class="table">
       
@@ -140,13 +140,6 @@ if (isset($_POST["save"])) {
             //initialize total
             $total = 0;
             if (!empty($_SESSION["cart"])) {
-              //connection
-              $conn = new mysqli(
-                "localhost:3307",
-                "root",
-                "123456",
-                "cartexample"
-              );
 
               //create array of initail qty which is 1
               $index = 0;
@@ -209,7 +202,7 @@ if (isset($_POST["save"])) {
         </div>
 </div>
 
-<aside class="col-lg-3">
+<aside class="col-lg-4">
 	                			<div class="summary summary-cart">
 	                				<h2 class="summary-title">Cart Total</h2><!-- End .summary-title -->
 
