@@ -3,8 +3,8 @@
     
     class DBHelper {
         const DB_USER = 'root';
-        const DB_PASSWORD =  '';
-        const DB_HOST =  'localhost:3306';
+        const DB_PASSWORD =  '123456';
+        const DB_HOST =  'localhost:3307';
         const DB_NAME = 'homedecor';
         const CHARSET = 'utf8mb4';
         
